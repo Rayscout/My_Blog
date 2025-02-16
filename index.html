@@ -275,118 +275,54 @@
 <main class="page-container" id="swup">
 
     
-        
-    <style>
-        .home-banner-container {
-            background: none !important;
-        }
-        .home-article-item,
-        .sidebar-links,
-        .sidebar-content,
-        a.page-number,
-        a.extend,
-        .sidebar-links .links:hover,
-        .right-bottom-tools,
-        footer.footer {
-            background-color: var(--background-color-transparent-80) !important;
-        }
-        .right-bottom-tools:hover,
-        a.page-number:hover,
-        a.extend:hover {
-            background-color: var(--primary-color) !important;
-        }
-        .site-info,
-        .home-article-sticky-label {
-            background-color: var(--background-color-transparent-15) !important;
-        }
-        .home-article-sticky-label {
-            backdrop-filter: none !important;
-        }
-    </style>
-    <div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
-        <img src="/figures/%E9%A3%8E%E6%99%AF/%E6%9B%BC%E8%B0%B7%E9%BB%84%E6%98%8F.JPG" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
-        <img src="/figures/%E9%A3%8E%E6%99%AF/%E6%9B%BC%E8%B0%B7%E6%99%9A%E9%9C%9E.JPG" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
-    </div>
+        $temp-title-fs = hexo-config('home_banner.text_style.title_size')
+$title-font-size = $temp-title-fs ? convert($temp-title-fs) : 2.8rem
+$temp-subtitle-fs = hexo-config('home_banner.text_style.subtitle_size')
+$subtitle-font-size = $temp-subtitle-fs ? convert($temp-subtitle-fs) : 1.4rem
+$temp-line-height = hexo-config('style.first_screen.line_height')
+$line-height = $temp-line-height ? $temp-line-height : 1.2
+$home-banner-icon-size = 1.6rem
 
+@import '../../common/variables'
 
-<div class="home-banner-container flex justify-center items-center transition-fade relative">
-    
-    <div class="content mt-8 flex flex-col justify-center items-center">
-        <div class="description flex flex-col justify-center items-center w-screen font-medium text-center"
-        
-        >
-            请告诉她我以花冠女神的名义起誓
-            
-            
-                <p><i id="subtitle"></i></p>
-            
-        </div>
-        
-            
-            <div class="absolute bottom-0.5 flex flex-row justify-between max-w-[1340px] items-center w-full px-8 sm:px-12">
-                <div class="flex p-3 bg-gray-300/50 dark:bg-gray-500/40 backdrop-blur-lg border border-white/20 dark:border-gray-500/30 group rounded-full cursor-pointer flex justify-center items-center aspect-square h-full shadow-redefine-flat hover:shadow-redefine-flat-hover transition-shadow" onclick="scrollToMain()" >
-                    <i class="fa-solid fa-arrow-down fa-fw fa-lg group-hover:translate-y-1 transition-transform"></i>
-                </div>
-                <div class="social-contacts px-6 py-3 bg-gray-300/50 dark:bg-gray-500/40 backdrop-blur-lg border border-white/20 dark:border-gray-500/30 shadow-redefine-flat rounded-full flex flex-row gap-3 items-center">
-                    
-                        
-                            
-                                <span class="social-contact-item github">
-                                    <a target="_blank" href="https://github.com/Rayscout/Rayscout.github.io.git">
-                                        <i class="fa-brands fa-fw fa-lg fa-github"></i>
-                                    </a>
-                                </span>
-                            
-                        
-                    
-                        
-                            
-                                <span class="social-contact-item instagram">
-                                    <a target="_blank" href="http://instagram.com/scoutray04# your Instagram URL">
-                                        <i class="fa-brands fa-fw fa-lg fa-instagram"></i>
-                                    </a>
-                                </span>
-                            
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-                    
-                    
+.home-banner-background
+  //background var(--home-banner-img) center center / cover no-repeat
+  transition filter 0.3s ease
 
-                        <div class="social-links-divider vertical-separator w-[1px] h-4 bg-third-text-color mx-0.5"></div>
+.home-banner-container
+  font-family 'Chillax-Variable', sans-serif
+  position relative
+  box-sizing border-box
+  width 100%
+  min-height 100vh
+  overflow hidden
+  will-change transform
 
-                        
-                            
-                                
-                                    <span class="social-contact-item-qr weixin cursor-pointer group">
-                                        <a target="_blank">
-                                            <i class="fa-brands fa-fw fa-lg fa-weixin"></i>
-                                            <div class="social-qr-container absolute h-auto bg-background-color-transparent-40 border border-white/20 dark:border-gray-500/30 overflow-hidden rounded-2xl bottom-0 mb-14 right-0 invisible group-hover:visible opacity-0 group-hover:opacity-100 translate-y-0.5 group-hover:translate-y-0 transition-all">
-                                                <img class="social-contacts-qr w-64"
-                                                     src="/figures/Blog%E5%9B%BE%E6%A0%87/myQRcode.jpg"/>
-                                            </div>
-                                        </a>
-                                    </span>
-                                
-                            
-                        
-                    
-                </div>
-            </div>
-        
-    </div>
-    <script>
-        const scrollToMain = ()=> {
-            console.log('scroll');
-            const target = document.querySelector('.main-content-container');
-            target.scrollIntoView({ behavior: 'smooth'});
-        }
-    </script>
-</div>
+  .content
+    position relative
+    box-sizing border-box
+    min-height 90vh
+
+    .description
+      font-size $title-font-size
+      line-height $line-height
+      color var(--home-banner-text-color)
+
+      p
+        margin 0
+        opacity 0.9
+        font-family 'Geist Variable', sans-serif
+        font-weight 350
+
+        i
+          font-size $subtitle-font-size
+          font-style normal
+
+        span
+          font-size: $subtitle-font-size * 1.05
+
+      +redefine-tablet()
+        font-size: $title-font-size * 0.9
     
 
     <div class="main-content-container">
@@ -749,6 +685,70 @@
     </div>
 
     <a href="/2025/01/05/%E7%94%9F%E6%B4%BB%E5%9C%A8%E6%A0%91%E4%B8%8A/">Read more<span class="seo-reader-text">生活在树上</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+                    <div class="absolute top-[12px] right-[12px] text-[0.7rem] text-third-text-color rounded-medium bg-background-color-transparent-15 py-[2px] px-[10px] border border-border-color z-1 hover:text-first-text-color cursor-default">
+                        <i class="fa-regular fa-thumbtack mr-[3px] text-[0.65rem]"></i>Sticky
+                    </div>
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2024/09/29/Linear_Algebra/">
+                            <img src="/figures/%E9%A3%8E%E6%99%AF/%E5%9B%BE%E4%B9%A6%E9%A6%86%E8%8A%B1_1.JPG" alt="Linear Algebra" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2024/09/29/Linear_Algebra/">
+                            Linear Algebra
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            <p>高等代数(上+下)</p>
+
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Sep 29 2024 07:47:05 GMT+0800">
+                
+                    2024-09-29
+                
+            </span>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%93%E4%B8%9A%E8%AF%BE/">数学专业课</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/09/29/Linear_Algebra/">Read more<span class="seo-reader-text">Linear Algebra</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1229,66 +1229,6 @@
     </div>
 
     <a href="/2024/09/29/Algebra/">Read more<span class="seo-reader-text">Algebra</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2024/09/29/Linear_Algebra/">
-                            <img src="/figures/%E9%A3%8E%E6%99%AF/%E5%9B%BE%E4%B9%A6%E9%A6%86%E8%8A%B1_1.JPG" alt="Linear-Algebra" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2024/09/29/Linear_Algebra/">
-                            Linear-Algebra
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>高等代数-上+下</p>
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Sep 29 2024 07:47:05 GMT+0800">
-                
-                    2024-09-29
-                
-            </span>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%95%B0%E5%AD%A6%E4%B8%93%E4%B8%9A%E8%AF%BE/">数学专业课</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/09/29/Linear_Algebra/">Read more<span class="seo-reader-text">Linear-Algebra</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
