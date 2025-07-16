@@ -83,7 +83,19 @@ export default function initUtils() {
     },
 
     calculatePercentage(scrollTop, scrollHeight, clientHeight) {
-      return Math.round((scrollTop / (scrollHeight - clientHeight)) * 100);
+      let percentageValue = Math.round(
+        (scrollTop / (scrollHeight - clientHeight)) * 100,
+      );
+      if (
+        isNaN(percentageValue) ||
+        percentageValue < 0 ||
+        !isFinite(percentageValue)
+      ) {
+        percentageValue = 0;
+      } else if (percentageValue > 100) {
+        percentageValue = 100;
+      }
+      return percentageValue;
     },
 
     // register window scroll event
@@ -179,6 +191,11 @@ export default function initUtils() {
     },
 
     toggleToolsList() {
+      // Auto expand tools list if configured
+      if (theme.global.side_tools && theme.global.side_tools.auto_expand) {
+        this.toolsList.classList.add("show");
+      }
+      
       this.toggleButton.addEventListener("click", () => {
         this.toolsList.classList.toggle("show");
       });
