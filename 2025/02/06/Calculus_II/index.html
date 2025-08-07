@@ -848,48 +848,44 @@
 
         
             
-    <div id="gitalk-container"></div>
-    <script data-swup-reload-script
-            src="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js"></script>
-    <script data-swup-reload-script>
-
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+    <div id="giscus-container"></div>
+    <script data-swup-reload-script defer>
+        async function loadGiscus() {
+            const giscusConfig = {
+                'src': 'https://giscus.app/client.js',
+                'data-repo': 'Rayscout/My_Blog',
+                'data-repo-id': 'R_kgDOMy0O-A',
+                'data-category': 'Announcements',
+                'data-category-id': 'DIC_kwDOMy0O-M4Ct5Vp',
+                'data-mapping': 'pathname',
+                'data-strict': '0',
+                'data-reactions-enabled': '1',
+                'data-emit-metadata': '1',
+                'data-theme': 'preferred_color_scheme',
+                'data-lang': 'zh-CN',
+                'data-input-position': 'bottom',
+                'data-loading': 'lazy',
+                'crossorigin': 'anonymous',
+                'async': true
             }
-
-            try {
-                Gitalk && new Gitalk({
-                    clientID: 'Ov23li5WHNf1EYhhIwyO',
-                    clientSecret: '9b67b157dcda60f02acb4bc4a2a22610c6d2172b',
-                    repo: 'Gitalk_blog',
-                    owner: 'Rayscout',
-                    admin: ['Rayscout'],
-                    id: __gitalk__pathname,
-                    language: 'zh-CN',
-                    proxy: 'https://cors.zme.ink/https://github.com/login/oauth/access_token'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
+            const giscusScript = document.createElement('script');
+            for (const key in giscusConfig) {
+                giscusScript.setAttribute(key, giscusConfig[key]);
             }
+            document.getElementById('giscus-container').appendChild(giscusScript);
         }
-
         if ('true') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
+            let loadGiscusTimeout = setTimeout(() => {
+                loadGiscus();
+                clearTimeout(loadGiscusTimeout);
             }, 1000);
         } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
+            document.addEventListener('DOMContentLoaded', loadGiscus);
         }
     </script>
 
 
-
+        
         
     
 </div>
